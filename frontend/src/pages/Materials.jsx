@@ -1,0 +1,2 @@
+const materials=[{name:'Striver SDE Sheet',url:'https://takeuforward.org/interviews/strivers-sde-sheet-top-coding-interview-problems/'},{name:'Blind 75',url:'https://leetcode.com/discuss/general-discussion/460599/blind-75-leetcode-questions'},{name:'SQL Notes',url:'https://www.w3schools.com/sql/'}]
+export default function Materials(){return <div><h1>Materials</h1>{materials.map((m,i)=><p key={i}><a href={m.url} target='_blank'>{m.name}</a></p>)}</div>}
