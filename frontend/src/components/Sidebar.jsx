@@ -1,11 +1,4 @@
-import { Link } from 'react-router-dom'
-export default function Sidebar(){
- const item={padding:'12px',display:'block',color:'white',textDecoration:'none'}
- return <aside style={{width:240,background:'#111',color:'#fff',minHeight:'100vh',padding:20}}>
- <h2>Prep Track</h2>
- <Link style={item} to='/'>Dashboard</Link>
- <Link style={item} to='/progress'>Progress</Link>
- <Link style={item} to='/tasks'>Tasks</Link>
- <Link style={item} to='/materials'>Materials</Link>
- </aside>
-}
+import { NavLink } from 'react-router-dom'
+import { useAuth } from '../context/AuthContext'
+const links = [['/','▦','Overview'],['/tasks','✓','My tasks'],['/progress','◔','Progress'],['/materials','▤','Resources'],['/settings','⚙','Study theme']]
+export default function Sidebar(){ const { user, signOut } = useAuth(); return <aside className="sidebar"><div className="brand"><div className="brand-mark">P</div><div><b>preptrack</b><small>PLACEMENT WORKSPACE</small></div></div><div className="nav-label">WORKSPACE</div><nav>{links.map(([to,icon,label])=><NavLink key={to} to={to} end={to==='/'} className={({isActive})=>`nav-link ${isActive?'active':''}`}><span className="nav-icon">{icon}</span>{label}</NavLink>)}</nav><div className="sidebar-bottom"><div className="profile"><div className="avatar">{user?.name?.[0]?.toUpperCase() || 'U'}</div><div className="profile-copy"><b>{user?.name}</b><small>{user?.email}</small></div><button className="icon-btn" title="Sign out" onClick={signOut}>↗</button></div><small className="version">Keep showing up. Your offer is closer.</small></div></aside> }
